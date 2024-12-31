@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./src/style.css">
+  <link rel="stylesheet" href="./src/style/slider.css">
+  <title>Vite App</title>
+</head>
+
+<body>
+  <main class="w-full">
+    <div class="w-full min-h-screen">
+      <div class="sliderJS">
+        <div class="sliderBackgound h-screen w-full  bg-cover" style="background-image: url('./src/images/bg-2.webp');">
+        </div>
+        <div class="sliderBackgound h-screen w-full  bg-cover" style="background-image: url('./src/images/bg-1.webp');">
+        </div>
+        <span class="mouse-cursor" data-mouse="slideJsMouse"></span>
+
+        <div class="sliderUtils">
+          <div class="next">next</div>
+          <div class="prev">prev</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- All Script tag  start here  -->
+  <script type="module" src="./src/js/InitJS.js"></script>
+  <script type="module" src="./src/main.js"></script>
+</body>
+
+</html>
