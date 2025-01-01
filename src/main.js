@@ -4,8 +4,8 @@ const mouse = document.querySelector(`[data-mouse="slideJsMouse"]`);
 const bgItems = document.querySelector(`.sliderBackgound`);
 
 document.addEventListener("mousemove", (e) => {
-  const mouseX = e.clientX - 100; // Mouse X position
-  const mouseY = e.clientY - 100; // Mouse Y position
+  const mouseX = e.clientX - 20; // Mouse X position
+  const mouseY = e.clientY - 20; // Mouse Y position
   const xPercent = e.clientX / window.innerWidth;
   const yPercent = e.clientY / window.innerHeight;
   gsap.to(bgItems, {
@@ -19,7 +19,7 @@ document.addEventListener("mousemove", (e) => {
   gsap.to(mouse, {
     x: mouseX,
     y: mouseY,
-    scale: 0.2,
+    scale: 1,
     duration: 0.2, // Lower duration for less delay
   });
 });
