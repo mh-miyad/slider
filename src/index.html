@@ -135,29 +135,29 @@
     initCarousel('.carousel-2', 'slide');
 
     // PIXI.js Carousel
-    const app = new PIXI.Application({ width: 800, height: 600, backgroundColor: 0x121212 });
-    document.getElementById('pixi-carousel').appendChild(app.view);
+    // const app = new PIXI.Application({ width: 800, height: 600, backgroundColor: 0x121212 });
+    // document.getElementById('pixi-carousel').appendChild(app.view);
 
-    const texture1 = PIXI.Texture.from('https://via.placeholder.com/800x600?text=Image+1');
-    const texture2 = PIXI.Texture.from('https://via.placeholder.com/800x600?text=Image+2');
-    const texture3 = PIXI.Texture.from('https://via.placeholder.com/800x600?text=Image+3');
+    // const texture1 = PIXI.Texture.from('https://via.placeholder.com/800x600?text=Image+1');
+    // const texture2 = PIXI.Texture.from('https://via.placeholder.com/800x600?text=Image+2');
+    // const texture3 = PIXI.Texture.from('https://via.placeholder.com/800x600?text=Image+3');
 
-    const sprite = new PIXI.Sprite(texture1);
-    sprite.anchor.set(0.5);
-    sprite.x = app.view.width / 2;
-    sprite.y = app.view.height / 2;
-    app.stage.addChild(sprite);
+    // const sprite = new PIXI.Sprite(texture1);
+    // sprite.anchor.set(0.5);
+    // sprite.x = app.view.width / 2;
+    // sprite.y = app.view.height / 2;
+    // app.stage.addChild(sprite);
 
-    const textures = [texture1, texture2, texture3];
-    let currentTextureIndex = 0;
+    // const textures = [texture1, texture2, texture3];
+    // let currentTextureIndex = 0;
 
-    setInterval(() => {
-      currentTextureIndex = (currentTextureIndex + 1) % textures.length;
-      gsap.to(sprite, {
-        pixi: { texture: textures[currentTextureIndex] },
-        duration: 1,
-      });
-    }, 3000);
+    // setInterval(() => {
+    //   currentTextureIndex = (currentTextureIndex + 1) % textures.length;
+    //   gsap.to(sprite, {
+    //     pixi: { texture: textures[currentTextureIndex] },
+    //     duration: 1,
+    //   });
+    // }, 3000);
   </script>
 </body>
 
