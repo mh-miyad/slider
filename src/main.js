@@ -8,37 +8,46 @@ const sliderItem = slider.querySelectorAll(".item");
     const newHeight = activeSlide.offsetHeight;
     slider.style.height = `${newHeight}px`;
   }
+  const sliderImages = [
+    "url('./src/images/bg-1.webp')",
+    "url('./src/images/bg-2.webp')",
+    "url('./src/images/bg-3.webp')",
+  ];
   const tl = gsap.timeline();
   let sliderShowNumber = 0;
   let currentIndex = 0;
   function showSlide(index = 0) {
-    console.log(index);
     const currentSlide = sliderItem[currentIndex];
     const nextSlide = sliderItem[index];
-    tl.to(currentSlide, {
-      opacity: 0,
-      duration: 1.5,
-      left: "-100%",
-      skewX: "180",
-      zIndex: 0,
-    })
-      .set(nextSlide, {
-        top: "200%",
-        left: "100%",
-        opacity: 0,
-        skewX: "180",
-      })
-      .to(nextSlide, {
-        top: "0%",
-        left: "0%",
-        opacity: 1,
-        duration: 1.5,
-        skewX: "0",
-        ease: "circ",
-      });
-
+    gsap.set(slider, {
+      backgroundImage: sliderImages[index],
+    });
+    gsap.to(slider, {
+      backgroundSize: "100%",
+      duration: 3,
+      // Repeat indefinitely
+      ease: "back.out",
+    });
+    // tl.to(currentSlide, {
+    //   opacity: 0,
+    //   duration: 0.5,
+    //   top: "-100%",
+    //   zIndex: 0,
+    // })
+    //   .set(nextSlide, {
+    //     top: "100%",
+    //     left: 0,
+    //     opacity: 0.7,
+    //   })
+    //   .to(nextSlide, {
+    //     top: "0%",
+    //     left: "0%",
+    //     opacity: 1,
+    //     duration: 2,
+    //     skewX: "0",
+    //     ease: "circ",
+    //   });
     currentIndex = index;
-    // console.log(currentIndex);
   }
   adjustSliderHeight();
   showSlide(0);
@@ -46,5 +55,5 @@ const sliderItem = slider.querySelectorAll(".item");
     const nextIndex = (currentIndex + 1) % sliderItem.length;
     showSlide(nextIndex);
     sliderShowNumber++;
-  }, 5000);
+  }, 10000);
 })();
