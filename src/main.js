@@ -1,83 +1,50 @@
 import gsap from "gsap";
 
-const sliderContainer = document.querySelector(".slider_container");
-const sliderItems = document.querySelectorAll(".sliderBackground");
-const nextButton = document.getElementById("next");
-const prevButton = document.getElementById("prev");
-const mouse = document.querySelector("[data-mouse='slideJsMouse']");
+const slider = document.querySelector(".slider");
+const sliderItem = slider.querySelectorAll(".item");
+(function () {
+  function adjustSliderHeight() {
+    const activeSlide = sliderItem[currentIndex];
+    const newHeight = activeSlide.offsetHeight;
+    slider.style.height = `${newHeight}px`;
+  }
+  const tl = gsap.timeline();
+  let sliderShowNumber = 0;
+  let currentIndex = 0;
+  function showSlide(index = 0) {
+    console.log(index);
+    const currentSlide = sliderItem[currentIndex];
+    const nextSlide = sliderItem[index];
+    tl.to(currentSlide, {
+      opacity: 0,
+      duration: 1.5,
+      left: "-100%",
+      skewX: "180",
+      zIndex: 0,
+    })
+      .set(nextSlide, {
+        top: "200%",
+        left: "100%",
+        opacity: 0,
+        skewX: "180",
+      })
+      .to(nextSlide, {
+        top: "0%",
+        left: "0%",
+        opacity: 1,
+        duration: 1.5,
+        skewX: "0",
+        ease: "circ",
+      });
 
-let currentIndex = 0;
-
-// Function to animate the carousel
-const goToSlide = (index) => {
-  const maxIndex = sliderItems.length - 1;
-  if (index > maxIndex)
-    currentIndex = 0; // Loop back to the start
-  else if (index < 0)
-    currentIndex = maxIndex; // Loop back to the end
-  else currentIndex = index;
-
-  gsap.to(sliderContainer, {
-    x: -currentIndex * 100 + "%", // Slide transition
-    duration: 0.2,
-    ease: "elastic.out",
-  });
-};
-
-nextButton.addEventListener("mouseenter", () => {
-  nextButton.style.zIndex = 50;
-  nextButton.classList.add("hover");
-  gsap.to(mouse, {
-    scale: 1.2,
-    zIndex: 10,
-    width: 100,
-    height: 100,
-    duration: 0.7,
-    backgroundColor: "rgba(255, 255, 255, 0.5)",
-    ease: "Linear.easeNone",
-  });
-});
-nextButton.addEventListener("mouseleave", () => {
-  nextButton.style.zIndex = 10;
-  nextButton.style.backgroundColor = "";
-  gsap.to(mouse, {
-    scale: 1,
-    width: 50,
-    height: 50,
-    zIndex: 10,
-    duration: 0.7,
-    backgroundColor: "",
-    ease: "Linear.easeNone",
-  });
-});
-// Event listeners for buttons
-nextButton.addEventListener("click", () => {
-  goToSlide(currentIndex + 1);
-});
-prevButton.addEventListener("click", () => goToSlide(currentIndex - 1));
-
-const sliderJS = document.querySelector(".sliderJS");
-sliderJS.addEventListener("mousemove", (e) => {
-  const mouseX = e.clientX - 0; // Mouse X position
-  const mouseY = e.clientY - 0; // Mouse Y position
-
-  // Animate the custom cursor to follow the mouse
-  gsap.to(mouse, {
-    x: mouseX,
-    y: mouseY,
-    scale: 1,
-    duration: 0.3,
-    ease: "Linear.easeNone",
-    // Lower duration for less delay
-  });
-});
-
-// const xPercent = e.clientX / window.innerWidth;
-// const yPercent = e.clientY / window.innerHeight;
-// gsap.to(bgItems, {
-//   backgroundPosition: `${xPercent * 10}% ${yPercent * 10}%`,
-//   backgroundAttachment: "fixed",
-//   scale: 1,
-//   duration: 0.8,
-//   ease: "Linear.easeNone",
-// });
+    currentIndex = index;
+    // console.log(currentIndex);
+  }
+  adjustSliderHeight();
+  showSlide(0);
+  setInterval(() => {
+    const nextIndex = (currentIndex + 1) % sliderItem.length;
+    showSlide(nextIndex);
+    sliderShowNumber++;
+  }, 5000);
+})();

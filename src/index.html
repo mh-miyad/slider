@@ -101,7 +101,6 @@
       function showSlide(index) {
         const currentSlide = slides[currentIndex];
         const nextSlide = slides[index];
-
         // Animation types
         if (animationType === 'fade') {
           gsap.to(currentSlide, { opacity: 0, duration: 1 });
