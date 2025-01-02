@@ -19,8 +19,8 @@ const goToSlide = (index) => {
 
   gsap.to(sliderContainer, {
     x: -currentIndex * 100 + "%", // Slide transition
-    duration: 1,
-    ease: "power2.inOut",
+    duration: 0.2,
+    ease: "elastic.out",
   });
 };
 
