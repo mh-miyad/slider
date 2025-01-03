@@ -3,6 +3,7 @@ import gsap from "gsap";
 const slider = document.querySelector(".slider");
 const sliderItem = slider.querySelectorAll(".item");
 (function () {
+  let currentIndex = 0;
   const barOfSlider = slider.querySelector(".sliderbar");
   const sliderContentItems = slider.querySelectorAll(".slider_zoom_content");
   sliderContentItems.forEach((el) => {
@@ -18,7 +19,6 @@ const sliderItem = slider.querySelectorAll(".item");
     });
     if (!bgImg) {
       gsap.set(el, {
-        backgroundColor: "gray",
         duration: 1.5,
         backgroundSize: "200%",
         ease: "expo.in",
@@ -27,12 +27,20 @@ const sliderItem = slider.querySelectorAll(".item");
   });
   gsap.to(barOfSlider, {
     width: "100%",
-    duration: 10,
+    duration: 13,
     repeat: -1,
     ease: "power2",
   });
   // here start carousel
-  sliderItem.forEach((item, index) => {
-    console.log(item, index);
-  });
+
+  function changeActiveClass() {
+    sliderItem.forEach((item) => {
+      item.classList.remove("active");
+      console.log(item.querySelector('[data-text=" zoomText"]'));
+    });
+    sliderItem[currentIndex].classList.add("active");
+    currentIndex = (currentIndex + 1) % sliderItem.length;
+    setTimeout(changeActiveClass, 13000);
+  }
+  changeActiveClass();
 })();
