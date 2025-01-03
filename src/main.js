@@ -3,6 +3,7 @@ import gsap from "gsap";
 const slider = document.querySelector(".slider");
 const sliderItem = slider.querySelectorAll(".item");
 (function () {
+  const barOfSlider = slider.querySelector(".sliderbar");
   const sliderContentItems = slider.querySelectorAll(".slider_zoom_content");
   sliderContentItems.forEach((el) => {
     const bgImg = el.getAttribute("data-bg-src");
@@ -24,5 +25,14 @@ const sliderItem = slider.querySelectorAll(".item");
       });
     }
   });
+  gsap.to(barOfSlider, {
+    width: "100%",
+    duration: 10,
+    repeat: -1,
+    ease: "power2",
+  });
   // here start carousel
+  sliderItem.forEach((item, index) => {
+    console.log(item, index);
+  });
 })();

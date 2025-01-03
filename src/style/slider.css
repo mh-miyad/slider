@@ -4,6 +4,16 @@
   position: relative;
   overflow: hidden;
 }
+.slider.slider-zoom .sliderbar {
+  height: 2px;
+  width: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fbc62f;
+  transition: width linear;
+  z-index: 50;
+}
 
 .slider .item {
   position: absolute;
@@ -15,6 +25,7 @@
 }
 
 .slider .item.active {
+  top: 0;
   opacity: 1;
   transition: 0.5s;
 }
